@@ -31,11 +31,12 @@ class WsgiTopBottomMiddleware(object):
      def __call__(self, environ, start_response):
         response = self.app(environ, start_response).decode() 
         if response.find('<body>') > -1:
-            header, body = response.split('<body>')
-            data, htmlend = body.split('</body>')
-            data = '<body>' + data + '</body>'
+            head1, head = response.split('<head>')
+            datahead, endhead = head.split('</head>')
+            head2, body = endhead.split('<body>')
+            databody, endbody = body.split('</body>')
 
-            yield (header + data + htmlend).encode()  
+            yield (head1 + data + endbody).encode()  
         else:
             yield (response).encode()  
         def app(environ, start_response):
