@@ -1,10 +1,19 @@
-../index.html
-<html>
-  <head>
-    <title>index.html</title>
-  </head>
-  <body>
-    <p><a href="/index.html">Относительная ссылка</a></p>
-    <p><a href="https://github.com/impuppy/my_rep/blob/master/index.html">Абсолютная ссылка</a></p>
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}aboutme.html{% endblock %}
+
+{% block head %}
+    {% for s in css %}
+      <link rel="stylesheet" href="/_static/{{ s }}"/>
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    {% for j in js %}
+       <script src="/_static/{{ js }}"></script>
+    {% endfor %}
+{% endblock %}
+
+{% block footer %}
+  Answer to the Webob.py
+{% endblock %}
